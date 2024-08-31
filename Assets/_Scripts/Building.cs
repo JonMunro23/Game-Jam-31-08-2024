@@ -7,6 +7,8 @@ public class Building : MonoBehaviour
 
     bool isCurrentlySelected;
 
+    AudioSource audioSource;
+
     private void OnEnable()
     {
         MouseInput.OnOccupiedGridCellClicked += SelectBuilding;
@@ -15,6 +17,11 @@ public class Building : MonoBehaviour
     private void OnDisable()
     {
         MouseInput.OnOccupiedGridCellClicked -= SelectBuilding;
+    }
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void InitBuildingData(BuildingData _buildingData)
@@ -32,5 +39,11 @@ public class Building : MonoBehaviour
 
         isCurrentlySelected = true;
         Debug.Log("Selected " +  occupiedGridCell.GetBuildingData().name);
+    }
+
+    public void PlayPlacementAudio(AudioClip clipToPlay)
+    {
+        audioSource.clip = clipToPlay;
+        audioSource.Play();
     }
 }

@@ -6,6 +6,8 @@ public class BuildingPlacement : MonoBehaviour
 {
     [SerializeField] BuildingData buildingToPlace;
 
+    [SerializeField] AudioClip buildingPlacementAuidoClip;
+ 
     private void OnEnable()
     {
         MouseInput.OnEmptyGridCellClicked += PlaceBuilding;
@@ -23,6 +25,7 @@ public class BuildingPlacement : MonoBehaviour
 
         Building clone = Instantiate(buildingToPlace.buildingPrefab, gridCell.transform.position, gridCell.transform.rotation);
         clone.InitBuildingData(buildingToPlace);
+        clone.PlayPlacementAudio(buildingPlacementAuidoClip);
         gridCell.SetBuilding(clone);
         
     }
