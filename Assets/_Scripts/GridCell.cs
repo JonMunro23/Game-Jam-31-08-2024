@@ -1,15 +1,69 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
-public class GridCell : MonoBehaviour
+public class GridCell : MonoBehaviour, IGridCell
 {
-    int gridXPos, gridYPos;
-    bool isOpen;
+    [SerializeField] Material highlightMat;
 
-    public void SetGridCoords(int xCoord, int yCoord)
+    Material defaultMat;
+    MeshRenderer meshRenderer;
+
+    Building builtBuilding;
+    bool isHighlighted = false;
+    bool isCellOccupied = false;
+    private void Awake()
     {
-        gridXPos = xCoord;
-        gridYPos = yCoord;
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+    }
+
+    private void Start()
+    {
+        defaultMat = meshRenderer.material;
+    }
+
+    public void HighlightCell()
+    {
+        if(!isHighlighted)
+        {
+            isHighlighted = true;
+            meshRenderer.material = highlightMat;
+        }    
+    }
+
+    public void UnhighlightCell()
+    {
+        if(isHighlighted)
+        {
+            isHighlighted = false;
+            meshRenderer.material = defaultMat;
+        }
+    }
+
+    public void SetBuilding(Building newBuilding)
+    {
+        builtBuilding = newBuilding;
+        isCellOccupied = true;
+        meshRenderer.enabled = false;
+    }
+
+    public BuildingData GetBuildingData()
+    {
+        return builtBuilding.buildingData;
+    }
+
+    public Building GetBuilding()
+    {
+        return builtBuilding;
+    }
+
+    public GridCell GetGridCell()
+    {
+        return this;
+    }
+
+
+    public bool IsCellOccupied()
+    {
+        return isCellOccupied;
     }
 }
