@@ -287,10 +287,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xCellAmount: 25
   zCellAmount: 25
-  xSpaceBetweenCells: 3
-  zSpaceBetweenCells: 3
+  xSpaceBetweenCells: 0
+  zSpaceBetweenCells: 0
   gridCell: {fileID: 7711665594786763802, guid: 911cff6205533144383e59578d821f41, type: 3}
-  cellSize: 2.5
+  cellSize: 5
   bloodPoolPrefab: {fileID: 6264992629734661236, guid: e2e787f53c2fb4044a5db1e76f36b818, type: 3}
 --- !u!4 &568588293
 Transform:
