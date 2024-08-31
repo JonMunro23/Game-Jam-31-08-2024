@@ -364,7 +364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingData: {fileID: 0}
-  audioSource: {fileID: 3155680656249688913}
 --- !u!82 &3155680656249688913
 AudioSource:
   m_ObjectHideFlags: 0
