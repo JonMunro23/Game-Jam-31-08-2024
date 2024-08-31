@@ -24,16 +24,22 @@ public class GridGeneration : MonoBehaviour
     void GenerateGridCell(int xCoord, int zCoord)
     {
 
-        float posX = transform.position.x + (xCoord * cellSize) + xSpaceBetweenCells;
-        float posZ = transform.position.z + (zCoord * cellSize) + zSpaceBetweenCells;
+        float posX = transform.position.x + (xCoord * cellSize) + (xCoord * xSpaceBetweenCells);
+        float posZ = transform.position.z + (zCoord * cellSize) + (zCoord * zSpaceBetweenCells);
         float posY = 0;
 
         Vector3 position = new Vector3(posX, posY, posZ);
         GridCell clone = Instantiate(gridCell, position, Quaternion.identity, transform);
-        clone.SetGridCoordinates(xCoord, zCoord);
-        spawnedCells.Add(clone);
-        bool isCenterCell = xCoord == xCellAmount / 2 && zCoord == zCellAmount / 2;
 
+        clone.SetGridCoordinates(xCoord, zCoord);
+        clone.transform.localScale = new Vector3(cellSize, 1, cellSize);
+
+        spawnedCells.Add(clone);
+
+
+
+
+        bool isCenterCell = xCoord == xCellAmount / 2 && zCoord == zCellAmount / 2;
         if (isCenterCell)
         {
             centerCell = clone;
@@ -46,15 +52,14 @@ public class GridGeneration : MonoBehaviour
         bloodPool.transform.SetParent(centerCell.transform);
         bloodPool.transform.localPosition = new Vector3(0, 0.1f, 0);
 
-        float bloodPoolSize = cellSize * 3;
-        bloodPool.transform.localScale = new Vector3(bloodPoolSize, 1, bloodPoolSize);
+        bloodPool.transform.localScale = new Vector3(3, 1, 3);
 
         centerCell.SetOccupied(true);
 
         GridCell[] surroundingCells = GetSurroundingCells(centerCell);
         foreach (GridCell cell in surroundingCells)
         {
-            if(cell != null)
+            if (cell != null)
             {
                 cell.SetOccupied(true);
             }

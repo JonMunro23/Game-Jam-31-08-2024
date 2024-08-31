@@ -1,4 +1,4 @@
-
+using System;
 using UnityEngine;
 
 public class Building : MonoBehaviour
@@ -8,6 +8,8 @@ public class Building : MonoBehaviour
     bool isCurrentlySelected;
 
     AudioSource audioSource;
+
+    public static event Action OnBuildingBuilt;
 
     private void OnEnable()
     {
@@ -24,6 +26,12 @@ public class Building : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        OnBuildingBuilt?.Invoke();
+        FindFirstObjectByType<BloodPool>().SubtractBlood(buildingData.initialBloodCost);
+    }
+
     public void InitBuildingData(BuildingData _buildingData)
     {
         buildingData = _buildingData;
@@ -38,7 +46,7 @@ public class Building : MonoBehaviour
             return;
 
         isCurrentlySelected = true;
-        Debug.Log("Selected " +  occupiedGridCell.GetBuildingData().name);
+        Debug.Log("Selected " + occupiedGridCell.GetBuildingData().name);
     }
 
     public void PlayPlacementAudio(AudioClip clipToPlay)
