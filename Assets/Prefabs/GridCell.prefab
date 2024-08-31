@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aee4a381bc32a4a8f67a9aa7b7e4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightMat: {fileID: 2100000, guid: 55e4d6f51ceb64d46ba7aeb85082fc75, type: 2}
+  defaultMat: {fileID: 0}
 --- !u!65 &-8125994277351751054
 BoxCollider:
   m_ObjectHideFlags: 0

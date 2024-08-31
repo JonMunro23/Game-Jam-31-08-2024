@@ -1,15 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GridCell : MonoBehaviour
+public class GridCell : MonoBehaviour, IGridCell
 {
-    int gridXPos, gridYPos;
-    bool isOpen;
+    [SerializeField] Material highlightMat;
 
-    public void SetGridCoords(int xCoord, int yCoord)
+    Material defaultMat;
+    MeshRenderer meshRenderer;
+
+    bool isHighlighted = false;
+    private void Awake()
     {
-        gridXPos = xCoord;
-        gridYPos = yCoord;
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+    }
+
+    private void Start()
+    {
+        defaultMat = meshRenderer.material;
+    }
+
+    public void HighlightCell()
+    {
+        if(!isHighlighted)
+        {
+            isHighlighted = true;
+            meshRenderer.material = highlightMat;
+        }    
+    }
+
+    public void UnhighlightCell()
+    {
+        if(isHighlighted)
+        {
+            isHighlighted = false;
+            meshRenderer.material = defaultMat;
+        }
     }
 }

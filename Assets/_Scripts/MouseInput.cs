@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseInput : MonoBehaviour
 {
     [SerializeField] Camera playerCam;
     [SerializeField] LayerMask gridCellMask;
-    GameObject hitObject;
+    IGridCell hitGridCell;
 
     // Update is called once per frame
     void Update()
@@ -19,11 +17,25 @@ public class MouseInput : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, gridCellMask))
         {
-            hitObject = hit.transform.gameObject;
-            
+            if(hit.transform.TryGetComponent(out IGridCell gridCell))
+            {
+
+                if (hitGridCell != null)
+                    if (hitGridCell != gridCell)
+                    {
+                        hitGridCell.UnhighlightCell();
+                    }
+
+                hitGridCell = gridCell;
+                hitGridCell.HighlightCell();
+
+            }
+        }
+        else if (hitGridCell != null)
+        {
+            hitGridCell.UnhighlightCell();
+            hitGridCell = null;
         }
 
     }
-
-
 }
