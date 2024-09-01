@@ -15,13 +15,19 @@ public class BuildingPlacement : MonoBehaviour
     private void OnEnable()
     {
         MouseInput.OnEmptyGridCellClicked += PlaceBuilding;
+        HUDBuildButton.OnBuildingButtonClick += HandleChangeBuildingType;
     }
 
     private void OnDisable()
     {
         MouseInput.OnEmptyGridCellClicked -= PlaceBuilding;
+        HUDBuildButton.OnBuildingButtonClick -= HandleChangeBuildingType;
     }
 
+    private void HandleChangeBuildingType(BuildingType buildingType)
+    {
+        buildingToPlace = buildingType;
+    }
 
 
     BuildingData GetBuildingToBuild()
