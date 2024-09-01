@@ -6,7 +6,8 @@ public enum BuildingType
     None,
     Wall,
     BloodTemple,
-    Tower
+    Tower,
+    Upgrade
 }
 
 [CreateAssetMenu(fileName = "BuildingData", menuName = "New Building Data")]
@@ -19,7 +20,8 @@ public class BuildingData : ScriptableObject
     public BuildingType buildingType;
     public Building buildingPrefab;
     public Sprite buildingUISprite;
-    public int buildingUpgradeLevel;
+    public int buildingUpgradeMaxLevel;
+    public int buildingUpgradeCost;
     public int buildingHealth;
     public int bloodGenerationAmount;
     public int initialBloodCost;

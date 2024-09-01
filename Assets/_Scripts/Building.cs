@@ -8,6 +8,7 @@ public class Building : MonoBehaviour
     public GridCell occupiedGridCell;
 
     bool isCurrentlySelected;
+    public int upgradeLevel = 1;
 
     AudioSource audioSource;
 
@@ -56,5 +57,33 @@ public class Building : MonoBehaviour
     {
         audioSource.clip = clipToPlay;
         audioSource.Play();
+    }
+
+    public int GetUpgradeCost()
+    {
+        return buildingData.buildingUpgradeCost * upgradeLevel;
+    }
+
+    public virtual void UpgradeBuilding()
+    {
+
+        Debug.Log("Upgrade Building");
+        if (buildingData.buildingUpgradeMaxLevel == upgradeLevel)
+        {
+            Debug.Log("Max level reached");
+            return;
+        }
+
+        int upgradeCost = GetUpgradeCost();
+
+        if (FindFirstObjectByType<BloodPool>().GetBlood() < upgradeCost)
+        {
+            Debug.Log("Not enough blood");
+            return;
+        }
+
+        FindFirstObjectByType<BloodPool>().SubtractBlood(upgradeCost);
+        upgradeLevel++;
+        Debug.Log("Building upgraded to level " + upgradeLevel);
     }
 }

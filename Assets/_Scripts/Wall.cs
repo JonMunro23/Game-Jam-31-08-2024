@@ -26,6 +26,7 @@ public class Wall : Building
   {
     base.InitBuilding(_buildingData, gridCell);
     GetSurroundingCells();
+    ScaleAllModels();
     SetModel();
   }
 
@@ -75,9 +76,14 @@ public class Wall : Building
 
     Transform modelToDisplay = transform.GetChild((int)model);
     modelToDisplay.gameObject.SetActive(true);
-    modelToDisplay.transform.localScale = new Vector3(1, this.buildingData.buildingUpgradeLevel + 3, 1);
 
     UpdateNeighbourWalls();
+  }
+
+  public override void UpgradeBuilding()
+  {
+    base.UpgradeBuilding();
+    ScaleAllModels();
   }
 
   void HideAllModels()
@@ -85,6 +91,19 @@ public class Wall : Building
     for (int i = 0; i < transform.childCount; i++)
     {
       transform.GetChild(i).gameObject.SetActive(false);
+    }
+  }
+
+  void ScaleAllModels()
+  {
+    for (int i = 0; i < transform.childCount; i++)
+    {
+      Transform modelToDisplay = transform.GetChild(i);
+
+      int newY = upgradeLevel + 3;
+      Debug.Log("Setting scale to " + newY);
+
+      modelToDisplay.transform.localScale = new Vector3(1, newY, 1);
     }
   }
 

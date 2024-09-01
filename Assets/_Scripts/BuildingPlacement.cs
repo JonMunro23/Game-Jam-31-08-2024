@@ -16,12 +16,15 @@ public class BuildingPlacement : MonoBehaviour
     private void OnEnable()
     {
         MouseInput.OnEmptyGridCellClicked += PlaceBuilding;
+        MouseInput.OnOccupiedGridCellClicked += UpgradeBuilding;
         HUDBuildButton.OnBuildingButtonClick += HandleChangeBuildingType;
+
     }
 
     private void OnDisable()
     {
         MouseInput.OnEmptyGridCellClicked -= PlaceBuilding;
+        MouseInput.OnOccupiedGridCellClicked -= UpgradeBuilding;
         HUDBuildButton.OnBuildingButtonClick -= HandleChangeBuildingType;
     }
 
@@ -31,6 +34,10 @@ public class BuildingPlacement : MonoBehaviour
     }
 
 
+    private bool IsUpgradeMode()
+    {
+        return buildingToPlace == BuildingType.Upgrade;
+    }
     BuildingData GetBuildingToBuild()
     {
         switch (buildingToPlace)
@@ -54,8 +61,28 @@ public class BuildingPlacement : MonoBehaviour
         clone.PlayPlacementAudio(buildingPlacementAuidoClip);
     }
 
+    void UpgradeBuilding(GridCell gridCell)
+    {
+        if (!IsUpgradeMode())
+            return;
+
+
+        Building building = gridCell.GetBuilding();
+        if (building)
+        {
+            building.UpgradeBuilding();
+        }
+        return;
+
+    }
+
     void PlaceBuilding(GridCell gridCell)
     {
+        if (IsUpgradeMode())
+        {
+            return;
+        }
+
         BuildingData buildingData = GetBuildingToBuild();
 
         if (!buildingData)

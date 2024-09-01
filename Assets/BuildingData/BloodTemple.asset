@@ -17,8 +17,10 @@ MonoBehaviour:
   buildingType: 2
   buildingPrefab: {fileID: 7117303263975429571, guid: a8bcf0d117620c94e89d0c9bdb079006, type: 3}
   buildingUISprite: {fileID: 0}
-  buildingUpgradeLevel: 0
-  buildingHealth: 0
+  buildingUpgradeLevel: 1
+  buildingUpgradeMaxLevel: 3
+  buildingUpgradeCost: 100
+  buildingHealth: 300
   bloodGenerationAmount: 25
   initialBloodCost: 200
   timeToBuild: 5
