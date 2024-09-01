@@ -8,6 +8,7 @@ public class BuildingPlacement : MonoBehaviour
 {
     [SerializeField] BuildingData wallBuilding;
     [SerializeField] BuildingData bloodTempleBuilding;
+    [SerializeField] BuildingData towerBuilding;
     [SerializeField] BuildingType buildingToPlace = BuildingType.None;
 
     [SerializeField] AudioClip buildingPlacementAuidoClip;
@@ -38,6 +39,8 @@ public class BuildingPlacement : MonoBehaviour
                 return bloodTempleBuilding;
             case BuildingType.Wall:
                 return wallBuilding;
+            case BuildingType.Tower:
+                return towerBuilding;
             default:
                 return null;
         }
