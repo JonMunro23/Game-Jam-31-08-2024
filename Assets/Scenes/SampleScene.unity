@@ -1108,7 +1108,9 @@ MonoBehaviour:
   bloodTempleBuilding: {fileID: 11400000, guid: 1244f2a32b140864191c744b56f6158a, type: 2}
   towerBuilding: {fileID: 11400000, guid: 5d7b5e515fa8f84469ecebcea999e2fa, type: 2}
   buildingToPlace: 0
-  buildingPlacementAuidoClip: {fileID: 0}
+  buildingPlacementAudioClip: {fileID: 8300000, guid: cad3814d315a9e34595660e1fe493c06, type: 3}
+  buildingUpgradeAudioClip: {fileID: 8300000, guid: c58b058e327385442b944655f0dfef43, type: 3}
+  negativeSoundAudioClip: {fileID: 8300000, guid: 71de78b347b2edb449d6a5d4b2bdffba, type: 3}
 --- !u!4 &1798731178
 Transform:
   m_ObjectHideFlags: 0

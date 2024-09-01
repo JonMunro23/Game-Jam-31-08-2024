@@ -80,9 +80,9 @@ public class Wall : Building
     UpdateNeighbourWalls();
   }
 
-  public override void UpgradeBuilding()
+  public override void UpgradeBuilding(AudioClip successSound, AudioClip negativeSound)
   {
-    base.UpgradeBuilding();
+    base.UpgradeBuilding(successSound, negativeSound);
     ScaleAllModels();
   }
 

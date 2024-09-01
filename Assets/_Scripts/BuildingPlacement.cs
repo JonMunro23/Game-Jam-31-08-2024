@@ -11,7 +11,9 @@ public class BuildingPlacement : MonoBehaviour
     [SerializeField] BuildingData towerBuilding;
     [SerializeField] BuildingType buildingToPlace = BuildingType.None;
 
-    [SerializeField] AudioClip buildingPlacementAuidoClip;
+    [SerializeField] AudioClip buildingPlacementAudioClip;
+    [SerializeField] AudioClip buildingUpgradeAudioClip;
+    [SerializeField] AudioClip negativeSoundAudioClip;
 
     private void OnEnable()
     {
@@ -58,7 +60,7 @@ public class BuildingPlacement : MonoBehaviour
         Building clone = Instantiate(buildingData.buildingPrefab, gridCell.transform.position, gridCell.transform.rotation, gridCell.transform);
         gridCell.SetBuilding(clone);
         clone.InitBuilding(buildingData, gridCell);
-        clone.PlayPlacementAudio(buildingPlacementAuidoClip);
+        clone.PlayPlacementAudio(buildingPlacementAudioClip);
     }
 
     void UpgradeBuilding(GridCell gridCell)
@@ -70,7 +72,7 @@ public class BuildingPlacement : MonoBehaviour
         Building building = gridCell.GetBuilding();
         if (building)
         {
-            building.UpgradeBuilding();
+            building.UpgradeBuilding(buildingUpgradeAudioClip, negativeSoundAudioClip);
         }
         return;
 
@@ -86,6 +88,11 @@ public class BuildingPlacement : MonoBehaviour
         BuildingData buildingData = GetBuildingToBuild();
 
         if (!buildingData)
+        {
+            return;
+        }
+
+        if (buildingData.initialBloodCost > FindFirstObjectByType<BloodPool>().GetBlood())
         {
             return;
         }
