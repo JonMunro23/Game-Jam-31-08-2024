@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseInput : MonoBehaviour
 {
@@ -20,10 +21,16 @@ public class MouseInput : MonoBehaviour
 
     void MouseRaycast()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            hitGridCell.UnhighlightCell();
+            return;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, gridCellMask))
         {
-            if(hit.transform.TryGetComponent(out IGridCell gridCell))
+            if (hit.transform.TryGetComponent(out IGridCell gridCell))
             {
 
                 if (hitGridCell != null)
@@ -35,7 +42,7 @@ public class MouseInput : MonoBehaviour
                 hitGridCell = gridCell;
                 hitGridCell.HighlightCell();
 
-                if(Input.GetKeyDown(placeBuildingInputKey))
+                if (Input.GetKeyDown(placeBuildingInputKey))
                 {
                     if (!hitGridCell.IsCellOccupied())
                         OnEmptyGridCellClicked?.Invoke(hitGridCell.GetGridCell());
