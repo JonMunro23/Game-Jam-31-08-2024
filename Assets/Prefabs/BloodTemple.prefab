@@ -363,7 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a529a6d80fcad4994a30adb63a1c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingData: {fileID: 0}
+  buildingData: {fileID: 11400000, guid: 1244f2a32b140864191c744b56f6158a, type: 2}
+  occupiedGridCell: {fileID: 0}
 --- !u!82 &3155680656249688913
 AudioSource:
   m_ObjectHideFlags: 0

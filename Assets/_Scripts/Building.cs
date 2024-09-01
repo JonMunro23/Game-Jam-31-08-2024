@@ -5,6 +5,8 @@ public class Building : MonoBehaviour
 {
     public BuildingData buildingData;
 
+    public GridCell occupiedGridCell;
+
     bool isCurrentlySelected;
 
     AudioSource audioSource;
@@ -32,9 +34,10 @@ public class Building : MonoBehaviour
         FindFirstObjectByType<BloodPool>().SubtractBlood(buildingData.initialBloodCost);
     }
 
-    public void InitBuildingData(BuildingData _buildingData)
+    public virtual void InitBuilding(BuildingData _buildingData, GridCell gridCell)
     {
         buildingData = _buildingData;
+        occupiedGridCell = gridCell;
     }
 
     public void SelectBuilding(GridCell occupiedGridCell)
