@@ -128,4 +128,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a69761d1e0864047a1aef666a540ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: 100
+  blood: 10000
