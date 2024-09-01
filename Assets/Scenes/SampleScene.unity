@@ -158,6 +158,7 @@ MonoBehaviour:
   gridCell: {fileID: 7711665594786763802, guid: 911cff6205533144383e59578d821f41, type: 3}
   cellSize: 5
   bloodPoolPrefab: {fileID: 6264992629734661236, guid: e2e787f53c2fb4044a5db1e76f36b818, type: 3}
+  spawnedCells: []
 --- !u!4 &568588293
 Transform:
   m_ObjectHideFlags: 0
@@ -549,7 +550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad118c28621d124ca6a59c96a993cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingToPlace: {fileID: 11400000, guid: 1244f2a32b140864191c744b56f6158a, type: 2}
+  wallBuilding: {fileID: 11400000, guid: 6dd207b8de6e6764fb98ac772e4fd866, type: 2}
+  bloodTempleBuilding: {fileID: 11400000, guid: 1244f2a32b140864191c744b56f6158a, type: 2}
+  buildingToPlace: 1
   buildingPlacementAuidoClip: {fileID: 0}
 --- !u!4 &1798731178
 Transform:

@@ -13,7 +13,7 @@ public class GridGeneration : MonoBehaviour
     [SerializeField] BloodPool bloodPoolPrefab;
     GridCell centerCell;
 
-    List<GridCell> spawnedCells = new List<GridCell>();
+    public List<GridCell> spawnedCells = new List<GridCell>();
 
 
     private void Start()
