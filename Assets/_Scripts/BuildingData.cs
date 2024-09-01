@@ -6,6 +6,7 @@ public enum BuildingType
     None,
     Wall,
     BloodTemple,
+    Tower
 }
 
 [CreateAssetMenu(fileName = "BuildingData", menuName = "New Building Data")]
