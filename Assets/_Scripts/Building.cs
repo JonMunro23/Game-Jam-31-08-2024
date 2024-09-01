@@ -64,13 +64,14 @@ public class Building : MonoBehaviour
         return buildingData.buildingUpgradeCost * upgradeLevel;
     }
 
-    public virtual void UpgradeBuilding()
+    public virtual void UpgradeBuilding(AudioClip successSound, AudioClip negativeSound)
     {
 
         Debug.Log("Upgrade Building");
         if (buildingData.buildingUpgradeMaxLevel == upgradeLevel)
         {
             Debug.Log("Max level reached");
+            PlayPlacementAudio(negativeSound);
             return;
         }
 
@@ -79,11 +80,13 @@ public class Building : MonoBehaviour
         if (FindFirstObjectByType<BloodPool>().GetBlood() < upgradeCost)
         {
             Debug.Log("Not enough blood");
+            PlayPlacementAudio(negativeSound);
             return;
         }
 
         FindFirstObjectByType<BloodPool>().SubtractBlood(upgradeCost);
         upgradeLevel++;
+        PlayPlacementAudio(successSound);
         Debug.Log("Building upgraded to level " + upgradeLevel);
     }
 }
